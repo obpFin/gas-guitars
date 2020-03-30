@@ -3,6 +3,7 @@ import express from 'express';
 import { applyMiddleware, applyRoutes } from './utils';
 import routes from './services';
 import middleware from './middleware';
+import errorHandlers from "./middleware/errorHandlers";
 
 process.on('uncaughtException', e => {
   // TODO: replace with logger
@@ -18,6 +19,7 @@ process.on('unhandledRejection', e => {
 const router = express();
 applyMiddleware(middleware, router);
 applyRoutes(routes, router);
+applyMiddleware(errorHandlers, router);
 
 const { PORT = 3000 } = process.env;
 const server = http.createServer(router);
