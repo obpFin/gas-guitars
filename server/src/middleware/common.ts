@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import parser from 'body-parser';
 import compression from 'compression';
 
@@ -13,4 +14,8 @@ export const handleBodyRequestParsing = (router: Router) => {
 
 export const handleCompression = (router: Router) => {
   router.use(compression());
+};
+
+export const handleHelmet = (router: Router) => {
+  router.use(helmet());
 };
