@@ -1,20 +1,31 @@
 import http from 'http';
 import express from 'express';
+
 import { applyMiddleware, applyRoutes } from './utils';
 import routes from './services';
 import middleware from './middleware';
-import errorHandlers from "./middleware/errorHandlers";
+import errorHandlers from './middleware/errorHandlers';
+import { sequelize } from './db/index';
 
-process.on('uncaughtException', e => {
+process.on('uncaughtException', (e) => {
   // TODO: replace with logger
   console.log(e);
   process.exit(1);
 });
-process.on('unhandledRejection', e => {
+process.on('unhandledRejection', (e) => {
   // TODO: replace with logger
   console.log(e);
   process.exit(1);
 });
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 const router = express();
 applyMiddleware(middleware, router);

@@ -1,17 +1,15 @@
-import { Pool } from 'pg';
+import { Sequelize } from 'sequelize';
 
-const config = {
-  host: process.env.PG_HOST,
-  port: parseInt(process.env.PG_PORT),
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  database: process.env.PG_DATABASE
-};
+const { PG_USER, PG_PASSWORD, PG_DATABASE, PG_PORT, PG_HOST } = process.env;
 
-const pool = new Pool(config);
-
-pool.on('error', function (err, client) {
-  console.error('idle client error', err.message, err.stack);
+export const sequelize = new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
+  host: PG_HOST,
+  port: parseInt(PG_PORT),
+  dialect: 'postgres',
+  // pool: {
+  //   max: 5,
+  //   min: 0,
+  //   acquire: 30000,
+  //   idle: 10000
+  // }
 });
-
-module.exports = pool;
