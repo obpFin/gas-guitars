@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 
-import { UserFactory } from './user';
+import { UserFactory } from './models/user';
+import { GuitarFactory } from './models/guitar';
+
 
 const { PG_USER, PG_PASSWORD, PG_DATABASE, PG_PORT, PG_HOST } = process.env;
 
@@ -20,3 +22,5 @@ export const db = new Sequelize({
 });
 
 export const User = UserFactory(db);
+export const Guitar = GuitarFactory(db);
+
