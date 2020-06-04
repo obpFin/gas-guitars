@@ -5,7 +5,7 @@ import { applyMiddleware, applyRoutes } from './utils';
 import routes from './services';
 import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
-import { sequelize } from './db/index';
+import { db } from './db/index';
 
 process.on('uncaughtException', (e) => {
   // TODO: replace with logger
@@ -18,12 +18,11 @@ process.on('unhandledRejection', (e) => {
   process.exit(1);
 });
 
-sequelize
-  .authenticate()
+db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
 

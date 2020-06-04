@@ -1,8 +1,13 @@
 import { Sequelize } from 'sequelize';
 
+import { UserFactory } from './user';
+
 const { PG_USER, PG_PASSWORD, PG_DATABASE, PG_PORT, PG_HOST } = process.env;
 
-export const sequelize = new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
+export const db = new Sequelize({
+  database: PG_DATABASE,
+  username: PG_USER,
+  password: PG_PASSWORD,
   host: PG_HOST,
   port: parseInt(PG_PORT),
   dialect: 'postgres',
@@ -13,3 +18,5 @@ export const sequelize = new Sequelize(PG_DATABASE, PG_USER, PG_PASSWORD, {
   //   idle: 10000
   // }
 });
+
+export const User = UserFactory(db);
