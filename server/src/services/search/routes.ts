@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { getPlacesByName } from "./SearchController";
+import { getGuitarsByName } from "./SearchController";
 import { checkSearchParams } from "../../middleware/checks";
 
 export default [
@@ -10,7 +10,7 @@ export default [
     handler: [
       checkSearchParams,
       async ({ query }: Request, res: Response) => {
-        const result = await getPlacesByName(query.q);
+        const result = await getGuitarsByName(query.q);
         res.status(200).send(result);
       }
     ]

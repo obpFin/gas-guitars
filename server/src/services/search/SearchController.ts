@@ -1,6 +1,6 @@
 import { getPlaces } from "./providers/OpenCageDataProvider";
 
-export const getPlacesByName = async (q: string) => {
+export const getGuitarsByName = async (q: string) => {
   if (q.length < 3) {
     return {
       type: "FeatureCollection",
