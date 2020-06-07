@@ -1,3 +1,3 @@
-import userRoutes from './users/routes';
+import guitarRoutes from './guitars/routes';
 
-export default [...userRoutes];
+export default [...guitarRoutes];

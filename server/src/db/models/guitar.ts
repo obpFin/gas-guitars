@@ -17,7 +17,7 @@ export type GuitarStatic = typeof Model & {
 };
 
 export function GuitarFactory(sequelize: Sequelize): GuitarStatic {
-  return <GuitarStatic>sequelize.define('guitars', {
+  return <GuitarStatic>sequelize.define('Guitar', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
