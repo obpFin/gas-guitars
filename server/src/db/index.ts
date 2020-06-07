@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 
-import { UserFactory } from './models/user';
+// import { UserFactory } from './models/user';
 import { GuitarFactory } from './models/guitar';
 
 
@@ -21,6 +21,6 @@ export const db = new Sequelize({
   // }
 });
 
-export const User = UserFactory(db);
+// export const User = UserFactory(db);
 export const Guitar = GuitarFactory(db);
 
