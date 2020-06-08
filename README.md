@@ -1,7 +1,7 @@
 # gas-guitars
 
 ## Tech
- Node.js - Postgresql - Sequelize
+ TypeScript - Node.js - Postgresql - Sequelize
 
 ## Setup
 
