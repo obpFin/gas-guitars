@@ -1,10 +1,12 @@
 import express, { Router } from "express";
+import { db } from '../../db/index';
+
 import request from "supertest";
 import { applyMiddleware, applyRoutes } from "../../utils";
 import * as promiseRequest from "request-promise";
 import middleware from "../../middleware";
 import errorHandlers from "../../middleware/errorHandlers";
-import routes from "../../services/search/routes";
+import routes from "../guitars/routes";
 
 // jest.mock("request-promise");
 
@@ -13,7 +15,7 @@ import routes from "../../services/search/routes";
 
 // pRequest.mockImplementation(() => '{"features": []}' as any);
 
-describe("routes", () => {
+describe("/guitars routes", () => {
   let router: Router;
 
   beforeEach(() => {
@@ -23,9 +25,9 @@ describe("routes", () => {
     applyMiddleware(errorHandlers, router);
   });
 
-  test("a valid string query", async () => {
+  test("GET /guitars", async () => {
 
-    const response = await request(router).get("/api/v1/search?q=Cham");
+    const response = await request(router).get("/api/v1/guitars");
     expect(response.status).toEqual(200);
   });
 
@@ -33,15 +35,4 @@ describe("routes", () => {
     const response = await request(router).get("/api/v11/search");
     expect(response.status).toEqual(404);
   });
-
-  test("an empty string", async () => {
-    const response = await request(router).get("/api/v1/search?q=");
-    expect(response.status).toEqual(400);
-  });
-
-  // test("a service is not available", async () => {
-  //   (requestPromise as any).mockImplementation(() => "Service Unavailable.");
-  //   const response = await request(router).get("/api/v1/search?q=Paris");
-  //   expect(response.status).toEqual(503);
-  // });
 });
