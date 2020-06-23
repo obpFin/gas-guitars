@@ -1,7 +1,10 @@
 # gas-guitars
 
 ## Tech
+ ### Server
  TypeScript - Node.js - Postgresql - Sequelize
+ ### Client
+ TypeScript - React.js
 
 ## Setup
 
