@@ -22,7 +22,7 @@
   },
   "scripts": {
     "postinstall": "npx tsc",
-    "dev": "tsc-watch --onSuccess \"node ./dist/src/server.js\"",
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
     "start": "npx pm2 start pm2.yaml",
     "pretest": "psql -c 'DROP DATABASE IF EXISTS test;' -h localhost -U postgres && psql -c 'CREATE DATABASE test;' -h localhost -U postgres",
     "test": "NODE_ENV=test DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@localhost:5432/test} LOG_LEVEL=${LOG_LEVEL:-fatal} jest"
@@ -50,7 +50,7 @@
     "knex": "^0.21.1",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
-    "pg": "^7.18.2",
+    "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
     "pm2": "^4.5.6",
     "request": "^2.88.2",
