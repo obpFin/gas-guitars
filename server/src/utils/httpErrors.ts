@@ -2,7 +2,7 @@ export abstract class HTTPClientError extends Error {
   readonly statusCode!: number;
   readonly name!: string;
 
-  constructor(message: object | string) {
+  constructor(message: Record<string, unknown> | string) {
     if (message instanceof Object) {
       super(JSON.stringify(message));
     } else {
@@ -16,7 +16,7 @@ export abstract class HTTPClientError extends Error {
 export class HTTP400Error extends HTTPClientError {
   readonly statusCode = 400;
 
-  constructor(message: string | object = 'Bad Request') {
+  constructor(message: string | Record<string, unknown> = 'Bad Request') {
     super(message);
   }
 }
@@ -24,7 +24,7 @@ export class HTTP400Error extends HTTPClientError {
 export class HTTP404Error extends HTTPClientError {
   readonly statusCode = 404;
 
-  constructor(message: string | object = 'Not found') {
+  constructor(message: string | Record<string, unknown> = 'Not found') {
     super(message);
   }
 }

@@ -5,14 +5,14 @@ import { applyMiddleware, applyRoutes } from './utils';
 import routes from './services';
 import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
-import logger from './utils/logger'
+import logger from './utils/logger';
 import { db } from './db/index';
 
 process.on('uncaughtException', (e) => {
   logger.log('error', e.message);
   process.exit(1);
 });
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason) => {
   logger.debug(reason);
   process.exit(1);
 });
