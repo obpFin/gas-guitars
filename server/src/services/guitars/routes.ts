@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import logger from '../../utils/logger';
 import { Guitar } from '../../db/index';
 
 /**
@@ -57,11 +58,10 @@ export default [
     handler: async ({ query }: Request, res: Response): Promise<void> => {
       try {
         const guitars = await Guitar.findAll();
-        console.log('guitars', guitars);
         res.status(200).send(guitars);
         // return res.json(guitars)
       } catch (e) {
-        console.log('Error', e);
+        logger.log('error', e);
         res.status(200).send([]);
       }
     },
