@@ -22,8 +22,8 @@
   },
   "scripts": {
     "postinstall": "npx tsc",
-    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "start": "npx pm2 start pm2.yaml",
+    "dev": "NODE_ENV=development tsc-watch --onSuccess \"node ./dist/server.js\"",
+    "start": "nNODE_ENV=production npx pm2 start pm2.yaml",
     "pretest": "psql -c 'DROP DATABASE IF EXISTS test;' -h localhost -U postgres && psql -c 'CREATE DATABASE test;' -h localhost -U postgres",
     "test": "NODE_ENV=test DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@localhost:5432/test} LOG_LEVEL=${LOG_LEVEL:-fatal} jest"
   },
